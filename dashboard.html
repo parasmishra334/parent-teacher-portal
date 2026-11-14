@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ParentTeacher Connect – Dashboard Shell</title>
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="dashboard-layout">
+    <!-- Left Navigation Sidebar -->
+    <aside class="dash-sidebar" id="dash-sidebar">
+      <div class="dash-sidebar-header">
+        <a href="index.html" class="brand-link" style="font-size:1.15rem;">
+          <div class="brand-icon-box" style="width:36px; height:36px; font-size:1.1rem;">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div>PT<span class="highlight">Connect</span></div>
+        </a>
+        <button class="dash-sidebar-close" id="dash-sidebar-close" aria-label="Close Navigation">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Navigation links dynamically shown/hidden by role -->
+      <nav class="dash-nav" id="dash-sidebar-nav">
+        <!-- Injected dynamically based on role -->
+      </nav>
+
+      <div class="dash-sidebar-footer">
+        <div class="dash-user-card">
+          <div class="dash-user-avatar" id="sidebar-user-avatar">PS</div>
+          <div class="dash-user-info">
+            <div class="dash-user-name" id="sidebar-user-name">Priya Sharma</div>
+            <span class="dash-user-role-badge" id="sidebar-user-role">Parent</span>
+          </div>
+          <button id="sidebar-logout-btn" title="Sign Out" style="color:var(--text-light); padding:0.4rem;">
+            <i class="fa-solid fa-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main View Area -->
+    <main class="dash-main">
+      <!-- Top Navigation Header -->
+      <header class="dash-topbar">
+        <div class="dash-topbar-left">
+          <button class="sidebar-toggle-btn" id="dash-sidebar-toggle" aria-label="Toggle navigation">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+
+          <!-- Parent-Specific Child Selector (if parent has multiple children) -->
+          <div class="child-selector-box" id="parent-child-selector-box" style="display:none;">
+            <label for="child-select-dropdown"><i class="fa-solid fa-child"></i> Child:</label>
+            <select id="child-select-dropdown" class="child-select">
+              <!-- Dynamically populated -->
+            </select>
+          </div>
+
+          <div style="font-weight:700; font-size:1rem; display:none;" id="teacher-class-label">
+            <i class="fa-solid fa-chalkboard"></i> <span id="teacher-class-text">Class 8-A</span>
+          </div>
+        </div>
+
+        <div class="dash-topbar-right">
+          <!-- 1-Click Role Switcher for seamless grading & testing -->
+          <div class="role-switcher-pill" title="Switch User Role to test permissions">
+            <label for="header-role-select" style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:var(--primary-dark);">Role:</label>
+            <select id="header-role-select">
+              <option value="parent">👨‍👩‍👧 Parent (Priya Sharma)</option>
+              <option value="teacher">👨‍🏫 Teacher (Suresh Iyer)</option>
+              <option value="admin">🎓 Admin (Dr. Rameshwar Rao)</option>
+            </select>
+          </div>
+
+          <!-- Notification Bell with unread counter -->
+          <button class="icon-btn" id="dash-notif-btn" title="Notifications">
+            <i class="fa-regular fa-bell"></i>
+            <span class="icon-badge" id="dash-notif-badge">3</span>
+          </button>
+
+          <!-- Dark Mode Toggle -->
+          <button class="icon-btn" id="dash-theme-btn" title="Toggle Dark/Light Mode">
+            <i class="fa-regular fa-moon" id="dash-theme-icon"></i>
+          </button>
+
+          <!-- Logout Button -->
+          <button class="btn btn-sm btn-secondary" id="dash-top-logout-btn">
+            <i class="fa-solid fa-power-off"></i> Logout
+          </button>
+        </div>
+      </header>
+
+      <!-- Content Container -->
+      <div class="dash-content" id="dash-content-outlet">
+        <!-- Rendered dynamically by script.js based on role and active route -->
+      </div>
+    </main>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ==================== DASHBOARD MODALS ==================== -->
+
+  <!-- Modal: Compose Message -->
+  <div class="modal-overlay" id="compose-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-solid fa-pen-to-square" style="color:var(--primary);"></i> Compose Direct Message</h3>
+        <button class="modal-close-btn" data-close-modal="compose-modal">&times;</button>
+      </div>
+      <form id="compose-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="compose-receiver">Recipient *</label>
+            <select id="compose-receiver" class="form-control" required>
+              <!-- Populated dynamically -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="compose-subject">Subject *</label>
+            <input type="text" id="compose-subject" class="form-control" placeholder="e.g. Leave application for upcoming test days" required>
+          </div>
+
+          <div class="form-group">
+            <label for="compose-body">Message Body *</label>
+            <textarea id="compose-body" class="form-control" rows="5" placeholder="Write your message here..." required></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal="compose-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Read Message Details -->
+  <div class="modal-overlay" id="read-msg-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-solid fa-envelope-open-text" style="color:var(--primary);"></i> Message Details</h3>
+        <button class="modal-close-btn" data-close-modal="read-msg-modal">&times;</button>
+      </div>
+      <div class="modal-body" id="read-msg-body">
+        <!-- Rendered dynamically -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close-modal="read-msg-modal">Close</button>
+        <button type="button" class="btn btn-primary" id="reply-msg-btn"><i class="fa-solid fa-reply"></i> Reply</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Schedule Meeting (PTM) -->
+  <div class="modal-overlay" id="meeting-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-solid fa-calendar-plus" style="color:var(--primary);"></i> Request Parent-Teacher Conference</h3>
+        <button class="modal-close-btn" data-close-modal="meeting-modal">&times;</button>
+      </div>
+      <form id="meeting-form">
+        <div class="modal-body">
+          <div class="form-group" id="meeting-target-group">
+            <label for="meeting-target-select">Select Teacher *</label>
+            <select id="meeting-target-select" class="form-control" required>
+              <!-- Injected dynamically -->
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="meeting-date">Proposed Date *</label>
+              <input type="date" id="meeting-date" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="meeting-time">Proposed Time Slot *</label>
+              <select id="meeting-time" class="form-control" required>
+                <option value="02:30 PM">02:30 PM - 03:00 PM</option>
+                <option value="03:00 PM">03:00 PM - 03:30 PM</option>
+                <option value="03:30 PM">03:30 PM - 04:00 PM</option>
+                <option value="04:00 PM">04:00 PM - 04:30 PM</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="meeting-agenda">Meeting Agenda & Topics to Discuss *</label>
+            <textarea id="meeting-agenda" class="form-control" rows="3" placeholder="e.g. Discuss Term 1 exam performance and Olympiad preparation" required></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal="meeting-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> Book Meeting Slot</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Pay School Fee -->
+  <div class="modal-overlay" id="pay-fee-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-solid fa-credit-card" style="color:var(--primary);"></i> School Fee Settlement</h3>
+        <button class="modal-close-btn" data-close-modal="pay-fee-modal">&times;</button>
+      </div>
+      <form id="pay-fee-form">
+        <div class="modal-body">
+          <input type="hidden" id="pay-fee-id">
+          
+          <div style="background:var(--primary-soft); padding:1rem; border-radius:12px; border:1px solid var(--primary-light); margin-bottom:1.25rem;">
+            <div style="font-size:0.8rem; color:var(--text-muted);">Fee Payable Description:</div>
+            <div style="font-size:1.15rem; font-weight:700; color:var(--primary-deep);" id="pay-fee-title">Term 2 Tuition Fee</div>
+            <div style="font-size:1.5rem; font-weight:800; color:var(--text-main); margin-top:0.35rem;" id="pay-fee-amount-display">₹28,500</div>
+          </div>
+
+          <div class="form-group">
+            <label>Payment Mode *</label>
+            <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:0.5rem;">
+              <label class="btn btn-secondary btn-sm" style="text-align:center; cursor:pointer;">
+                <input type="radio" name="pay-mode" value="UPI" checked> UPI (GPay/PhonePe)
+              </label>
+              <label class="btn btn-secondary btn-sm" style="text-align:center; cursor:pointer;">
+                <input type="radio" name="pay-mode" value="Card"> Debit / Credit Card
+              </label>
+              <label class="btn btn-secondary btn-sm" style="text-align:center; cursor:pointer;">
+                <input type="radio" name="pay-mode" value="NetBanking"> Net Banking
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="pay-account-holder">Payer Name *</label>
+            <input type="text" id="pay-account-holder" class="form-control" value="Priya Sharma" required>
+          </div>
+
+          <div style="font-size:0.78rem; color:var(--text-muted); display:flex; align-items:center; gap:0.4rem;">
+            <i class="fa-solid fa-shield-halved" style="color:var(--success);"></i> 256-bit Encrypted Simulated Payment Gateway
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal="pay-fee-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="pay-fee-submit-btn"><i class="fa-solid fa-check"></i> Authorize & Pay</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Add / Edit Grade (Teacher) -->
+  <div class="modal-overlay" id="grade-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title" id="grade-modal-title"><i class="fa-solid fa-file-pen" style="color:var(--primary);"></i> Add Academic Assessment</h3>
+        <button class="modal-close-btn" data-close-modal="grade-modal">&times;</button>
+      </div>
+      <form id="grade-form">
+        <div class="modal-body">
+          <input type="hidden" id="grade-form-id">
+          
+          <div class="form-group">
+            <label for="grade-student-select">Select Student *</label>
+            <select id="grade-student-select" class="form-control" required>
+              <!-- Dynamically populated -->
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="grade-subject">Subject *</label>
+              <input type="text" id="grade-subject" class="form-control" placeholder="e.g. Mathematics" required>
+            </div>
+            <div class="form-group">
+              <label for="grade-marks">Marks Scored (out of 100) *</label>
+              <input type="number" id="grade-marks" class="form-control" min="0" max="100" placeholder="e.g. 94" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="grade-comments">Teacher Feedback Comments *</label>
+            <textarea id="grade-comments" class="form-control" rows="3" placeholder="Detailed feedback on student strengths and areas of improvement..." required></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal="grade-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Assessment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Add / Edit User (Admin) -->
+  <div class="modal-overlay" id="user-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title" id="user-modal-title"><i class="fa-solid fa-user-plus" style="color:var(--primary);"></i> Add Student / User</h3>
+        <button class="modal-close-btn" data-close-modal="user-modal">&times;</button>
+      </div>
+      <form id="user-form">
+        <div class="modal-body">
+          <input type="hidden" id="user-form-id">
+          
+          <div class="form-group">
+            <label for="user-form-role">User Type *</label>
+            <select id="user-form-role" class="form-control" required>
+              <option value="student">Student</option>
+              <option value="parent">Parent</option>
+              <option value="teacher">Teacher</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="user-form-name">Full Name *</label>
+              <input type="text" id="user-form-name" class="form-control" placeholder="Full Name" required>
+            </div>
+            <div class="form-group">
+              <label for="user-form-email">Email / Phone *</label>
+              <input type="text" id="user-form-email" class="form-control" placeholder="Email or Phone" required>
+            </div>
+          </div>
+
+          <div class="form-row" id="user-student-fields">
+            <div class="form-group">
+              <label for="user-form-class">Class & Section</label>
+              <input type="text" id="user-form-class" class="form-control" placeholder="e.g. Class 8-A">
+            </div>
+            <div class="form-group">
+              <label for="user-form-roll">Roll Number</label>
+              <input type="text" id="user-form-roll" class="form-control" placeholder="e.g. 15">
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal="user-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Record</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Add Announcement / Event (Teacher & Admin) -->
+  <div class="modal-overlay" id="announcement-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-solid fa-bullhorn" style="color:var(--primary);"></i> Post Campus Announcement</h3>
+        <button class="modal-close-btn" data-close-modal="announcement-modal">&times;</button>
+      </div>
+      <form id="announcement-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="ann-title">Title / Headline *</label>
+            <input type="text" id="ann-title" class="form-control" placeholder="e.g. Annual Sports Day & March Past Schedule" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="ann-date">Effective Date *</label>
+              <input type="date" id="ann-date" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="ann-priority">Priority</label>
+              <select id="ann-priority" class="form-control">
+                <option value="Normal">Normal</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High Urgency</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="ann-desc">Detailed Description *</label>
+            <textarea id="ann-desc" class="form-control" rows="4" placeholder="Detailed bulletin content..." required></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal="announcement-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Publish Announcement</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Add Homework (Bonus) -->
+  <div class="modal-overlay" id="homework-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-solid fa-book-open" style="color:var(--primary);"></i> Post Homework Assignment</h3>
+        <button class="modal-close-btn" data-close-modal="homework-modal">&times;</button>
+      </div>
+      <form id="homework-form">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="hw-subject">Subject *</label>
+              <input type="text" id="hw-subject" class="form-control" placeholder="e.g. Mathematics" required>
+            </div>
+            <div class="form-group">
+              <label for="hw-duedate">Submission Due Date *</label>
+              <input type="date" id="hw-duedate" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="hw-title">Assignment Title *</label>
+            <input type="text" id="hw-title" class="form-control" placeholder="e.g. Chapter 4 Practice Problems" required>
+          </div>
+
+          <div class="form-group">
+            <label for="hw-desc">Instructions & Details *</label>
+            <textarea id="hw-desc" class="form-control" rows="3" placeholder="Provide instructions for students and parents..." required></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal="homework-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Post Assignment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Add Behavior Note (Bonus) -->
+  <div class="modal-overlay" id="behavior-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-solid fa-award" style="color:var(--primary);"></i> Record Student Behavior Observation</h3>
+        <button class="modal-close-btn" data-close-modal="behavior-modal">&times;</button>
+      </div>
+      <form id="behavior-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="beh-student">Select Student *</label>
+            <select id="beh-student" class="form-control" required>
+              <!-- Dynamically populated -->
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="beh-type">Observation Type *</label>
+              <select id="beh-type" class="form-control" required>
+                <option value="positive">🌟 Positive Recognition</option>
+                <option value="concern">⚠️ Area of Concern</option>
+                <option value="neutral">ℹ️ General Note</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="beh-badge">Badge / Short Tag *</label>
+              <input type="text" id="beh-badge" class="form-control" placeholder="e.g. Team Leader / Homework Incomplete" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="beh-note">Observation Note *</label>
+            <textarea id="beh-note" class="form-control" rows="3" placeholder="Describe the behavior or incident..." required></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal="behavior-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Log Observation</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Notifications Drawer -->
+  <div class="modal-overlay" id="notif-modal">
+    <div class="modal-box" style="max-width: 480px;">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-solid fa-bell" style="color:var(--primary);"></i> Notifications</h3>
+        <button class="modal-close-btn" data-close-modal="notif-modal">&times;</button>
+      </div>
+      <div class="modal-body" id="notif-modal-body" style="padding:0;">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- App Data & Scripts -->
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+

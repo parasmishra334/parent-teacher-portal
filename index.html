@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ParentTeacher Connect – School Collaboration Portal</title>
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Landing Top Header -->
+  <header class="landing-header">
+    <div class="landing-nav-container">
+      <a href="index.html" class="brand-link">
+        <div class="brand-icon-box">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div>ParentTeacher <span class="highlight">Connect</span></div>
+      </a>
+
+      <nav class="landing-nav-links">
+        <a href="#features">Features</a>
+        <a href="#roles">Portal Roles</a>
+        <a href="#demo">Demo Accounts</a>
+        <a href="#gallery">Campus Life</a>
+      </nav>
+
+      <div class="landing-actions">
+        <!-- Theme Toggle -->
+        <button class="icon-btn" id="theme-toggle-btn" title="Toggle Dark/Light Mode">
+          <i class="fa-regular fa-moon" id="theme-icon"></i>
+        </button>
+        <button class="btn btn-secondary btn-sm" id="open-login-btn">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i> Login
+        </button>
+        <button class="btn btn-primary btn-sm" id="open-register-btn">
+          <i class="fa-solid fa-user-plus"></i> Register
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <div class="section-badge"><i class="fa-solid fa-heart" style="color:var(--primary);"></i> Nurturing Student Excellence</div>
+      <h1>Bridging the Gap Between <span class="gradient-text">Classroom & Home</span></h1>
+      <p>
+        The unified, transparent communication portal empowering parents, teachers, and school administrators with real-time academic report cards, attendance logs, direct messaging, and secure fee clearance.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="dashboard.html" class="btn btn-primary btn-lg" id="enter-portal-btn">
+          <i class="fa-solid fa-gauge-high"></i> Enter Portal Dashboard
+        </a>
+        <button class="btn btn-secondary btn-lg" id="explore-features-btn">
+          <i class="fa-solid fa-circle-play"></i> Explore Features
+        </button>
+      </div>
+
+      <!-- Quick 1-Click Demo Login Box -->
+      <div class="demo-accounts-pill" id="demo">
+        <div class="demo-pill-title">
+          <i class="fa-solid fa-bolt" style="color:var(--primary);"></i> 1-Click Instant Demo Login (Grading & Testing)
+        </div>
+        <div class="demo-buttons-grid">
+          <button class="demo-btn" data-demo="parent" title="Login as Priya Sharma (Parent)">
+            <strong><i class="fa-solid fa-person-breastfeeding"></i> Parent Login</strong>
+            <span>priya@email.com</span>
+          </button>
+
+          <button class="demo-btn" data-demo="teacher" title="Login as Suresh Iyer (Teacher)">
+            <strong><i class="fa-solid fa-chalkboard-user"></i> Teacher Login</strong>
+            <span>suresh@school.edu</span>
+          </button>
+
+          <button class="demo-btn" data-demo="admin" title="Login as Dr. Rameshwar Rao (Admin)">
+            <strong><i class="fa-solid fa-shield-halved"></i> Admin Login</strong>
+            <span>admin@school.edu</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Mockup Card -->
+    <div class="hero-visual">
+      <div class="hero-mockup-card">
+        <div class="mockup-header">
+          <div class="mockup-student-profile">
+            <div class="mockup-avatar">AS</div>
+            <div>
+              <h3 style="font-size:1.15rem; margin-bottom:0.15rem;">Aarav Sharma</h3>
+              <p style="font-size:0.82rem; color:var(--text-muted);">Class 8-A · Roll No 14 · St. Xavier's</p>
+            </div>
+          </div>
+          <span class="status-badge status-present"><i class="fa-solid fa-check"></i> 96% Attendance</span>
+        </div>
+
+        <div style="background:var(--bg-app); border-radius:12px; padding:1.25rem; margin-bottom:1.25rem; border:1px solid var(--border-color);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+            <span style="font-weight:700; font-size:0.9rem;">Mathematics (Mid-Term)</span>
+            <span class="grade-badge grade-a1">94 / 100 (A1)</span>
+          </div>
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" style="width: 94%;"></div>
+          </div>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.4rem;">
+            <em>"Exceptional grasp on geometry and linear equations."</em> – Suresh Iyer
+          </p>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.85rem; margin-bottom:1.25rem;">
+          <div style="background:var(--primary-soft); border:1px solid var(--primary-light); padding:1rem; border-radius:12px;">
+            <div style="font-size:0.75rem; text-transform:uppercase; font-weight:700; color:var(--primary-deep);">Upcoming PTM</div>
+            <div style="font-weight:800; font-size:0.95rem; margin-top:0.2rem;">Nov 18, 3:00 PM</div>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Math Review with Suresh Iyer</div>
+          </div>
+
+          <div style="background:var(--bg-app); border:1px solid var(--border-color); padding:1rem; border-radius:12px;">
+            <div style="font-size:0.75rem; text-transform:uppercase; font-weight:700; color:var(--text-muted);">Term 1 Tuition</div>
+            <div style="font-weight:800; font-size:0.95rem; margin-top:0.2rem; color:var(--success);">₹28,500 Paid</div>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Receipt #RCP-2026-8812</div>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between; font-size:0.85rem; color:var(--text-muted); padding-top:0.85rem; border-top:1px solid var(--border-color);">
+          <span><i class="fa-solid fa-message" style="color:var(--primary);"></i> 2 Unread messages</span>
+          <a href="dashboard.html" style="color:var(--primary); font-weight:700;">View Full Profile &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Features Section -->
+  <section class="features-section" id="features">
+    <div class="section-container">
+      <div class="section-title-box">
+        <span class="section-badge">Comprehensive Feature Suite</span>
+        <h2>Everything You Need for School Collaboration</h2>
+        <p>A streamlined, role-based platform designed with Indian schools and families in mind.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon-box"><i class="fa-solid fa-chart-line"></i></div>
+          <h3>Academic Progress & Grades</h3>
+          <p>Subject-wise marks breakdown, grading system (A1, A2, B1), cumulative progress meters, and personalized teacher comments for every assessment.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box"><i class="fa-solid fa-calendar-check"></i></div>
+          <h3>Daily Attendance Tracking</h3>
+          <p>Interactive calendar and table views showing daily status (Present, Absent, Late) with automatic overall attendance percentage calculation.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box"><i class="fa-solid fa-credit-card"></i></div>
+          <h3>Fee Payments & Invoices</h3>
+          <p>Track tuition, activity, and transport fee schedules. Simulated instant checkout turns pending fees to Paid with printable payment receipts.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box"><i class="fa-solid fa-comments"></i></div>
+          <h3>Direct Messaging System</h3>
+          <p>Secure school communications with Inbox, Outbox, Compose, unread badge alerts, and direct replies between parents and teachers.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box"><i class="fa-solid fa-handshake"></i></div>
+          <h3>PTM Meeting Scheduler</h3>
+          <p>Parents can easily book 1-on-1 parent-teacher conferences with date, time, and custom agenda. Teachers can confirm, reschedule, or cancel.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box"><i class="fa-solid fa-bullhorn"></i></div>
+          <h3>Announcements & Events</h3>
+          <p>Real-time campus notices, holiday circulars, sports day itineraries, and exam timetable broadcasts directly on your home feed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roles Breakdown Section -->
+  <section class="roles-showcase-section" id="roles">
+    <div class="section-container">
+      <div class="section-title-box">
+        <span class="section-badge">Role-Based Experience</span>
+        <h2>Tailored Portals for Every Stakeholder</h2>
+        <p>Each user role gets a dedicated workspace designed specifically for their daily tasks.</p>
+      </div>
+
+      <div class="role-cards-grid">
+        <!-- Parent Role -->
+        <div class="role-card highlight">
+          <span class="role-pill" style="background:var(--primary-light); color:var(--primary-dark);">For Parents</span>
+          <h3>Parent Portal</h3>
+          <p style="color:var(--text-muted); font-size:0.9rem;">Keep track of your child's holistic growth from anywhere, anytime.</p>
+          <ul>
+            <li><i class="fa-solid fa-circle-check"></i> Monitor marks & report cards</li>
+            <li><i class="fa-solid fa-circle-check"></i> View daily attendance & leave logs</li>
+            <li><i class="fa-solid fa-circle-check"></i> Pay tuition fees with instant receipts</li>
+            <li><i class="fa-solid fa-circle-check"></i> Message class & subject teachers</li>
+            <li><i class="fa-solid fa-circle-check"></i> Book one-on-one PTM meetings</li>
+          </ul>
+          <button class="btn btn-primary btn-sm" data-demo="parent" style="width:100%;">
+            Try Parent Demo &rarr;
+          </button>
+        </div>
+
+        <!-- Teacher Role -->
+        <div class="role-card">
+          <span class="role-pill" style="background:#eff6ff; color:#1d4ed8;">For Teachers</span>
+          <h3>Teacher Portal</h3>
+          <p style="color:var(--text-muted); font-size:0.9rem;">Manage homeroom rosters, grades, and student engagement effortlessly.</p>
+          <ul>
+            <li><i class="fa-solid fa-circle-check"></i> Mark daily student attendance</li>
+            <li><i class="fa-solid fa-circle-check"></i> Record subject grades & feedback</li>
+            <li><i class="fa-solid fa-circle-check"></i> Respond to parent communications</li>
+            <li><i class="fa-solid fa-circle-check"></i> Accept / confirm PTM meetings</li>
+            <li><i class="fa-solid fa-circle-check"></i> Post homework & announcements</li>
+          </ul>
+          <button class="btn btn-secondary btn-sm" data-demo="teacher" style="width:100%;">
+            Try Teacher Demo &rarr;
+          </button>
+        </div>
+
+        <!-- Admin Role -->
+        <div class="role-card">
+          <span class="role-pill" style="background:#ecfdf5; color:#047857;">For School Admins</span>
+          <h3>Admin Control Center</h3>
+          <p style="color:var(--text-muted); font-size:0.9rem;">Full operational command over academic records, fees, and communication.</p>
+          <ul>
+            <li><i class="fa-solid fa-circle-check"></i> Manage parents, teachers & students</li>
+            <li><i class="fa-solid fa-circle-check"></i> Campus-wide message audit</li>
+            <li><i class="fa-solid fa-circle-check"></i> Export attendance & fee reports to CSV</li>
+            <li><i class="fa-solid fa-circle-check"></i> Broadcast school events & circulars</li>
+            <li><i class="fa-solid fa-circle-check"></i> System telemetry & fee metrics</li>
+          </ul>
+          <button class="btn btn-secondary btn-sm" data-demo="admin" style="width:100%;">
+            Try Admin Demo &rarr;
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Campus Life & Gallery Preview -->
+  <section class="features-section" id="gallery" style="background-color:var(--bg-app);">
+    <div class="section-container">
+      <div class="section-title-box">
+        <span class="section-badge">Life at Campus</span>
+        <h2>Moments of Discovery & Community</h2>
+        <p>A peek into our classrooms, sports grounds, and science laboratories.</p>
+      </div>
+
+      <div class="gallery-grid" id="landing-gallery-grid">
+        <!-- Rendered dynamically from data.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Landing Footer -->
+  <footer class="landing-footer">
+    <div class="footer-container">
+      <div style="display:flex; align-items:center; gap:0.75rem;">
+        <div class="brand-icon-box" style="width:36px; height:36px; font-size:1.1rem;">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div>
+          <strong style="color:var(--text-main); font-size:1.1rem;">ParentTeacher Connect</strong>
+          <p style="font-size:0.8rem; color:var(--text-muted);">Empowering Collaborative Education Across India</p>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:1.5rem; font-size:0.85rem;">
+        <a href="#features">Features</a>
+        <a href="#roles">Portals</a>
+        <a href="#demo">Demo Accounts</a>
+        <a href="dashboard.html">Live Dashboard</a>
+      </div>
+
+      <div>
+        <button class="btn btn-sm btn-secondary" id="landing-reset-data-btn">
+          <i class="fa-solid fa-arrows-rotate"></i> Reset Demo Data
+        </button>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:2rem; font-size:0.8rem; color:var(--text-light);">
+      &copy; 2026 ParentTeacher Connect Portal · Frontend-only implementation (HTML5, CSS3, JavaScript)
+    </div>
+  </footer>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- Login Modal -->
+  <div class="modal-overlay" id="login-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-solid fa-arrow-right-to-bracket" style="color:var(--primary);"></i> Portal Sign In</h3>
+        <button class="modal-close-btn" data-close-modal="login-modal">&times;</button>
+      </div>
+      <form id="login-form">
+        <div class="modal-body">
+          <!-- Role selector in login -->
+          <div class="form-group">
+            <label for="login-role">Signing in as:</label>
+            <select id="login-role" class="form-control" required>
+              <option value="parent">Parent</option>
+              <option value="teacher">Teacher</option>
+              <option value="admin">Administrator</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="login-email">Email Address *</label>
+            <input type="email" id="login-email" class="form-control" placeholder="e.g. priya@email.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="login-password">Password *</label>
+            <input type="password" id="login-password" class="form-control" placeholder="••••••••" required minlength="6">
+          </div>
+
+          <div id="login-error-msg" style="display:none; color:var(--danger); font-size:0.85rem; margin-top:0.5rem; padding:0.5rem; background:var(--danger-bg); border-radius:6px;"></div>
+
+          <!-- Quick Demo Autofill Hint -->
+          <div style="margin-top:1.25rem; padding:0.85rem; background:var(--primary-soft); border-radius:8px; border:1px solid var(--primary-light);">
+            <div style="font-size:0.78rem; font-weight:700; color:var(--primary-deep); margin-bottom:0.4rem;">
+              <i class="fa-solid fa-key"></i> Quick Demo Presets:
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
+              <button type="button" class="btn btn-sm btn-secondary autofill-btn" data-email="priya@email.com" data-pass="parent123" data-role="parent">Parent: Priya</button>
+              <button type="button" class="btn btn-sm btn-secondary autofill-btn" data-email="suresh@school.edu" data-pass="teacher123" data-role="teacher">Teacher: Suresh</button>
+              <button type="button" class="btn btn-sm btn-secondary autofill-btn" data-email="admin@school.edu" data-pass="admin123" data-role="admin">Admin: Principal</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal="login-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-lock-open"></i> Sign In to Portal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Registration Modal (Tabs for Parent / Teacher) -->
+  <div class="modal-overlay" id="register-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-solid fa-user-plus" style="color:var(--primary);"></i> Create New Account</h3>
+        <button class="modal-close-btn" data-close-modal="register-modal">&times;</button>
+      </div>
+
+      <div style="display:flex; border-bottom:1px solid var(--border-color); background:var(--bg-app);">
+        <button type="button" class="btn reg-tab-btn active" id="tab-reg-parent" style="flex:1; border-radius:0; border-bottom:2px solid var(--primary);">Register as Parent</button>
+        <button type="button" class="btn reg-tab-btn" id="tab-reg-teacher" style="flex:1; border-radius:0;">Register as Teacher</button>
+      </div>
+
+      <!-- Parent Registration Form -->
+      <form id="register-parent-form">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="reg-parent-name">Parent Full Name *</label>
+              <input type="text" id="reg-parent-name" class="form-control" placeholder="e.g. Meera Reddy" required>
+            </div>
+            <div class="form-group">
+              <label for="reg-parent-email">Email Address *</label>
+              <input type="email" id="reg-parent-email" class="form-control" placeholder="meera.reddy@gmail.com" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="reg-parent-phone">Phone Number (10 Digits) *</label>
+              <input type="tel" id="reg-parent-phone" class="form-control" placeholder="+91 98765 43210" required>
+            </div>
+            <div class="form-group">
+              <label for="reg-parent-password">Password (min 6 chars) *</label>
+              <input type="password" id="reg-parent-password" class="form-control" placeholder="••••••••" required minlength="6">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="reg-child-name">Child / Student Name *</label>
+              <input type="text" id="reg-child-name" class="form-control" placeholder="e.g. Aryan Reddy" required>
+            </div>
+            <div class="form-group">
+              <label for="reg-child-class">Class & Section *</label>
+              <input type="text" id="reg-child-class" class="form-control" placeholder="e.g. Class 8-A" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="reg-parent-address">Home Residential Address</label>
+            <input type="text" id="reg-parent-address" class="form-control" placeholder="Apartment / Colony, City">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal="register-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Complete Parent Registration</button>
+        </div>
+      </form>
+
+      <!-- Teacher Registration Form -->
+      <form id="register-teacher-form" style="display:none;">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="reg-teacher-name">Teacher Full Name *</label>
+              <input type="text" id="reg-teacher-name" class="form-control" placeholder="e.g. Vikramaditya Joshi" required>
+            </div>
+            <div class="form-group">
+              <label for="reg-teacher-email">Official School Email *</label>
+              <input type="email" id="reg-teacher-email" class="form-control" placeholder="v.joshi@school.edu" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="reg-teacher-phone">Phone Number *</label>
+              <input type="tel" id="reg-teacher-phone" class="form-control" placeholder="+91 98765 11223" required>
+            </div>
+            <div class="form-group">
+              <label for="reg-teacher-password">Password (min 6 chars) *</label>
+              <input type="password" id="reg-teacher-password" class="form-control" placeholder="••••••••" required minlength="6">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="reg-teacher-subject">Primary Teaching Subject *</label>
+              <input type="text" id="reg-teacher-subject" class="form-control" placeholder="e.g. Physics / Mathematics" required>
+            </div>
+            <div class="form-group">
+              <label for="reg-teacher-class">Class Assigned *</label>
+              <input type="text" id="reg-teacher-class" class="form-control" placeholder="e.g. Class 9-B" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="reg-teacher-avail">Parent Interaction Hours</label>
+            <input type="text" id="reg-teacher-avail" class="form-control" placeholder="e.g. Mon, Wed, Fri: 2:30 PM - 3:30 PM">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal="register-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Complete Teacher Registration</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification System Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- App Data & Scripts -->
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+
