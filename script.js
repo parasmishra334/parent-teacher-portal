@@ -334,6 +334,17 @@ function handleDemoLogin(role) {
 // Dashboard Logic (dashboard.html)
 // ==========================================
 function initDashboard() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const paramRole = urlParams.get('role');
+  if (paramRole) {
+    const store = loadData();
+    let userForRole = null;
+    if (paramRole === 'parent') userForRole = store.users.find(u => u.email === 'priya@email.com');
+    else if (paramRole === 'teacher') userForRole = store.users.find(u => u.email === 'suresh@school.edu');
+    else if (paramRole === 'admin') userForRole = store.users.find(u => u.email === 'admin@school.edu');
+    if (userForRole) setCurrentUser(userForRole);
+  }
+
   let currentUser = getCurrentUser();
 
   // If no session found, default to Priya Sharma (Parent demo)

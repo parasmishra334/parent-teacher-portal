@@ -75,20 +75,50 @@ Open your browser and navigate to: **`http://localhost:8080`**
 
 ---
 
-## 6. Screenshots Guide
+## 6. Screenshots & Feature Gallery
 
-When preparing your submission or presentation, capture the following 10 views:
+Below are the actual screenshots captured from the running application:
 
-1. **Landing Page & Demo Switcher:** Hero banner, quick demo login buttons, and mockup card.
-2. **Parent Dashboard Overview:** Student portfolio card for Aarav Sharma, attendance meter (96%), and upcoming PTM alerts.
-3. **Child Switcher (Parent):** Switching from Aarav Sharma (Class 8-A) to Diya Sharma (Class 5-B).
-4. **Academic Report Card:** Subject marks, percentages, letter grades (A1, A2, B1), and teacher notes.
-5. **Fee Payment & Receipt:** Pending fee invoice, payment modal with UPI, and generated receipt reference.
-6. **Attendance Marker (Teacher):** Interactive radio buttons (Present / Late / Absent) and date selector for Class 8-A.
-7. **Gradebook Management (Teacher):** List of student assessments with "Add Assessment" modal.
-8. **Direct Messaging Hub:** Inbox / Outbox view with unread badges, message reader, and compose modal.
-9. **Administrative Reports & CSV Export:** Fee collections and attendance audit with downloadable `.csv` file.
-10. **Mobile Responsive View:** Hamburger slide-out drawer navigation on a 375px mobile viewport.
+### 1. Landing Page & 1-Click Demo Login Bar
+![Landing Page](screenshots/01_landing_page.png)
+
+### 2. Parent Dashboard & Student Portfolio (Aarav Sharma)
+![Parent Dashboard Overview](screenshots/02_parent_dashboard.png)
+
+### 3. Academic Report Card & Progress Meters
+![Academic Progress](screenshots/03_academic_progress.png)
+
+### 4. Daily Attendance Tracker & Punctuality Meter
+![Attendance Tracker](screenshots/04_attendance_tracker.png)
+
+### 5. Fee Payments & Online Invoicing
+![Fee Payments](screenshots/05_fees_payment.png)
+
+### 6. Two-Way Direct Messaging Hub (Inbox & Outbox)
+![Messaging Hub](screenshots/06_messaging_system.png)
+
+### 7. Parent-Teacher Conferences (PTM) Scheduler
+![PTM Scheduler](screenshots/07_ptm_meetings.png)
+
+### 8. Teacher Command Deck (Class 8-A Homeroom)
+![Teacher Dashboard](screenshots/08_teacher_dashboard.png)
+
+### 9. Daily Morning Roll Call Marker (Teacher)
+![Attendance Marker](screenshots/09_teacher_attendance_marker.png)
+
+### 10. Gradebook & Assessment Management (Teacher)
+![Teacher Gradebook](screenshots/10_teacher_gradebook.png)
+
+### 11. Central Administrative Console & Telemetry (Admin)
+![Admin Dashboard](screenshots/11_admin_dashboard.png)
+
+### 12. Institutional Reports & CSV Export Engine (Admin)
+![Admin Reports](screenshots/12_admin_reports_csv.png)
+
+### 13. Mobile Responsive View (iPhone Viewport)
+<p align="center">
+  <img src="screenshots/13_mobile_view.png" width="380" alt="Mobile View">
+</p>
 
 ---
 
